@@ -2,6 +2,15 @@ import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
 import Notiflix from 'notiflix';
 
+const btnStart = document.querySelector('[data-start]');
+btnStart.disabled = true;
+btnStart.addEventListener('click', onCount);
+
+const daysSpan = document.querySelector('[data-days]');
+const hoursSpan = document.querySelector('[data-hours]');
+const minutesSpan = document.querySelector('[data-minutes]');
+const secondsSpan = document.querySelector('[data-seconds]');
+
 let selectedDateUTC;
 
 const options = {
@@ -26,18 +35,8 @@ const options = {
 const calendar = document.querySelector('#datetime-picker');
 flatpickr(calendar, options);
 
-const btnStart = document.querySelector('[data-start]');
-btnStart.addEventListener('click', onCount);
-
-
-const daysSpan = document.querySelector('[data-days]');
-const hoursSpan = document.querySelector('[data-hours]');
-const minutesSpan = document.querySelector('[data-minutes]');
-const secondsSpan = document.querySelector('[data-seconds]');
-
 function onCount() {
-  intervalId = null;
-  intervalId = setInterval(() => {
+  const intervalId = setInterval(() => {
     const currentTime = Date.now();
 
     const diff = selectedDateUTC - currentTime;
